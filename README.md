@@ -1,20 +1,52 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# PersonaPulse AI - Master of Behavioral Psychology & Strategic Communication
 
-# Run and deploy your AI Studio app
+PersonaPulse AI is an ultra-premium AI SaaS platform designed to analyze linguistic patterns, decode hidden subtext, and architect strategic responses using behavioral psychology.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/52931adc-3ab4-4f46-a264-deffeee09c2f
+- **Linguistic Forensics:** Identify personality traits (MBTI, Big Five, Enneagram).
+- **Subtext Decoding:** Uncover hidden intentions and emotional triggers.
+- **Strategic Response Architecture:** Generate tailored responses for specific goals.
+- **Freemium Model:** 10 free daily scans with a Pro upgrade option.
+- **Multilingual Support:** Full support for English and Arabic (RTL).
+- **Premium UI:** Cinematic Dark Mode with Glassmorphism and Bento Grid layout.
 
-## Run Locally
+## Getting Started
 
-**Prerequisites:**  Node.js
+### Prerequisites
 
+- **Node.js** (v18 or higher recommended)
+- **npm** or **yarn**
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### Installation
+
+1. Clone the repository (if applicable).
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+### Configuration
+
+1. Create a `.env.local` file in the root directory.
+2. Add your Gemini API Key:
+   ```env
+   GEMINI_API_KEY=your_actual_api_key_here
+   ```
+
+### Running the App
+
+Start the development server:
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:3000` (or the port specified in your console).
+
+## Tech Stack
+
+- **Frontend:** React 19, Vite, Tailwind CSS 4.
+- **Animations:** Motion (formerly Framer Motion).
+- **Icons:** Lucide React.
+- **AI:** Google Gemini API (@google/genai).
+- **Internationalization:** i18next.

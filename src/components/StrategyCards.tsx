@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 import { Shield, Heart, Zap, Copy, Check } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
@@ -31,35 +31,43 @@ export function StrategyCards({ strategies }: StrategyCardsProps) {
     data: { response: string; whyItWorks: string };
     accentColor: string;
   }) => (
-    <div className="space-y-6 mt-4">
-      <Card className="glass-panel border-l-4 rtl:border-l-0 rtl:border-r-4" style={{ [document.dir === 'rtl' ? 'borderRightColor' : 'borderLeftColor']: accentColor }}>
-        <CardHeader className="flex flex-row items-center justify-between pb-2">
-          <div className="flex items-center space-x-3 rtl:space-x-reverse">
-            <Icon className="w-5 h-5" style={{ color: accentColor }} />
-            <CardTitle className="text-lg font-semibold">{title}</CardTitle>
+    <div className="space-y-6 mt-6">
+      <div className="glass-panel p-8 rounded-3xl relative overflow-hidden group premium-shadow">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center border" style={{ backgroundColor: `${accentColor}10`, borderColor: `${accentColor}30` }}>
+              <Icon className="w-5 h-5" style={{ color: accentColor }} />
+            </div>
+            <h4 className="text-xl font-bold tracking-tight">{title}</h4>
           </div>
-          <button
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={() => copyToClipboard(data.response, title)}
-            className="p-2 hover:bg-white/5 rounded-full transition-colors"
+            className="rounded-full hover:bg-white/5"
           >
             {copied === title ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4 opacity-50" />}
-          </button>
-        </CardHeader>
-        <CardContent>
-          <div className="bg-black/30 p-4 rounded-lg border border-white/5 mb-4">
-            <p className="text-foreground leading-relaxed">
-              {data.response}
-            </p>
+          </Button>
+        </div>
+        
+        <div className="bg-white/[0.03] p-6 rounded-2xl border border-white/5 mb-6 group-hover:bg-white/[0.05] transition-colors">
+          <p className="text-lg leading-relaxed opacity-90">
+            {data.response}
+          </p>
+        </div>
+        
+        <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+          <div className="w-8 h-8 rounded-full bg-yellow-500/10 flex items-center justify-center shrink-0 border border-yellow-500/20">
+            <Zap className="w-4 h-4 text-yellow-500" />
           </div>
-          <div className="flex items-start space-x-3 rtl:space-x-reverse opacity-70">
-            <Zap className="w-4 h-4 mt-1 flex-shrink-0 text-yellow-500" />
-            <p className="text-xs italic">
-              <span className="font-bold uppercase text-[10px] tracking-tighter mr-2 rtl:ml-2 rtl:mr-0">{t('why_it_works')}:</span>
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-widest opacity-40 block mb-1">{t('why_it_works')}</span>
+            <p className="text-sm opacity-70 leading-relaxed">
               {data.whyItWorks}
             </p>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 
@@ -67,24 +75,26 @@ export function StrategyCards({ strategies }: StrategyCardsProps) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.4 }}
-      className="mt-12"
+      transition={{ delay: 0.5 }}
+      className="mt-16"
     >
-      <h3 className="text-sm font-mono uppercase tracking-[0.3em] mb-6 opacity-50 text-center">
-        {t('strategy_architecture')}
-      </h3>
+      <div className="text-center mb-8">
+        <span className="text-[10px] font-bold uppercase tracking-[0.4em] opacity-30">
+          {t('strategy_architecture')}
+        </span>
+      </div>
       
       <Tabs defaultValue="tactician" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 glass-panel p-1">
-          <TabsTrigger value="tactician" className="data-[state=active]:bg-primary/20">
+        <TabsList className="flex w-full max-w-md mx-auto glass-panel p-1 rounded-2xl mb-8">
+          <TabsTrigger value="tactician" className="flex-1 rounded-xl data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:glow-primary transition-all">
             <Shield className="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" />
             <span className="hidden sm:inline">{t('tactician')}</span>
           </TabsTrigger>
-          <TabsTrigger value="empath" className="data-[state=active]:bg-accent/20">
+          <TabsTrigger value="empath" className="flex-1 rounded-xl data-[state=active]:bg-accent data-[state=active]:text-white data-[state=active]:glow-accent transition-all">
             <Heart className="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" />
             <span className="hidden sm:inline">{t('empath')}</span>
           </TabsTrigger>
-          <TabsTrigger value="alpha" className="data-[state=active]:bg-white/10">
+          <TabsTrigger value="alpha" className="flex-1 rounded-xl data-[state=active]:bg-white data-[state=active]:text-black transition-all">
             <Zap className="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" />
             <span className="hidden sm:inline">{t('alpha')}</span>
           </TabsTrigger>
@@ -103,7 +113,7 @@ export function StrategyCards({ strategies }: StrategyCardsProps) {
             title={t('empath')} 
             icon={Heart} 
             data={strategies.empath} 
-            accentColor="#f97316"
+            accentColor="#8B5CF6"
           />
         </TabsContent>
         <TabsContent value="alpha">

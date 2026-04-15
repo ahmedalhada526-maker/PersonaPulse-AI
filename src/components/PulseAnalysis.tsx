@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Brain, Target, Eye, Fingerprint, Lock, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
@@ -15,123 +15,136 @@ export function PulseAnalysis({ data, isPremium, onUpgradeClick }: PulseAnalysis
   const { t } = useTranslation();
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-        >
-          <Card className="glass-panel h-full">
-            <CardHeader className="flex flex-row items-center space-x-3 pb-2 rtl:space-x-reverse">
-              <Fingerprint className="w-5 h-5 text-primary" />
-              <CardTitle className="text-sm font-mono uppercase tracking-widest opacity-70">
-                {t('recipient_persona')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-lg font-medium leading-relaxed">
-                {data.recipientPersona}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {data.personalityTraits.mbti && (
-                  <Badge variant="outline" className="font-mono text-[10px] uppercase border-primary/30 text-primary">
-                    {t('mbti')}: {data.personalityTraits.mbti}
-                  </Badge>
-                )}
-                {data.personalityTraits.bigFive && (
-                  <Badge variant="outline" className="font-mono text-[10px] uppercase border-accent/30 text-accent">
-                    {t('big_five')}: {data.personalityTraits.bigFive}
-                  </Badge>
-                )}
-                {data.personalityTraits.enneagram && (
-                  <Badge variant="outline" className="font-mono text-[10px] uppercase border-white/20">
-                    {t('enneagram')}: {data.personalityTraits.enneagram}
-                  </Badge>
-                )}
+    <div className="bento-grid">
+      {/* Recipient Persona - Large Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="md:col-span-2"
+      >
+        <div className="glass-panel p-8 rounded-3xl h-full relative overflow-hidden group">
+          <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+            <Fingerprint className="w-24 h-24" />
+          </div>
+          <div className="relative z-10">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20">
+                <Fingerprint className="w-5 h-5 text-primary" />
               </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <div className="space-y-6">
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <Card className="glass-panel">
-              <CardHeader className="flex flex-row items-center space-x-3 pb-2 rtl:space-x-reverse">
-                <Target className="w-5 h-5 text-accent" />
-                <CardTitle className="text-sm font-mono uppercase tracking-widest opacity-70">
-                  {t('current_dynamic')}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-secondary-foreground">
-                  {data.currentDynamic}
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <Card className="glass-panel">
-              <CardHeader className="flex flex-row items-center space-x-3 pb-2 rtl:space-x-reverse">
-                <Eye className="w-5 h-5 text-white" />
-                <CardTitle className="text-sm font-mono uppercase tracking-widest opacity-70">
-                  {t('hidden_needs')}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-secondary-foreground italic font-serif">
-                  "{data.hiddenNeeds}"
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">
+                {t('recipient_persona')}
+              </span>
+            </div>
+            <p className="text-2xl md:text-3xl font-bold leading-tight mb-8">
+              {data.recipientPersona}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {data.personalityTraits.mbti && (
+                <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-1.5 rounded-xl text-xs font-mono">
+                  {t('mbti')}: {data.personalityTraits.mbti}
+                </Badge>
+              )}
+              {data.personalityTraits.bigFive && (
+                <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-1.5 rounded-xl text-xs font-mono">
+                  {t('big_five')}: {data.personalityTraits.bigFive}
+                </Badge>
+              )}
+              {data.personalityTraits.enneagram && (
+                <Badge className="bg-white/5 text-white/70 border-white/10 px-4 py-1.5 rounded-xl text-xs font-mono">
+                  {t('enneagram')}: {data.personalityTraits.enneagram}
+                </Badge>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Advanced Insights Section */}
+      {/* Current Dynamic */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.2 }}
+      >
+        <div className="glass-panel p-6 rounded-3xl h-full border-accent/10">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center border border-accent/20">
+              <Target className="w-4 h-4 text-accent" />
+            </div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">
+              {t('current_dynamic')}
+            </span>
+          </div>
+          <p className="text-sm leading-relaxed opacity-80">
+            {data.currentDynamic}
+          </p>
+        </div>
+      </motion.div>
+
+      {/* Hidden Needs */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        <div className="glass-panel p-6 rounded-3xl h-full border-white/10">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">
+              <Eye className="w-4 h-4 text-white" />
+            </div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">
+              {t('hidden_needs')}
+            </span>
+          </div>
+          <p className="text-sm italic opacity-80 border-l-2 border-white/10 pl-4 rtl:pl-0 rtl:pr-4">
+            "{data.hiddenNeeds}"
+          </p>
+        </div>
+      </motion.div>
+
+      {/* Advanced Insights - Full Width */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
+        className="md:col-span-2"
       >
-        <Card className="glass-panel border-primary/20 relative overflow-hidden">
-          <CardHeader className="flex flex-row items-center space-x-3 pb-2 rtl:space-x-reverse">
-            <Sparkles className="w-5 h-5 text-yellow-500" />
-            <CardTitle className="text-sm font-mono uppercase tracking-widest opacity-70">
-              Advanced Psychological Insights
-            </CardTitle>
-            {!isPremium && <Badge className="bg-primary/20 text-primary text-[9px] uppercase">Pro Only</Badge>}
-          </CardHeader>
-          <CardContent className="relative">
-            <div className={!isPremium ? "blur-md select-none pointer-events-none" : ""}>
-              <p className="text-sm leading-relaxed text-secondary-foreground">
+        <div className="glass-panel p-8 rounded-3xl border-primary/20 relative overflow-hidden premium-shadow">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center border border-yellow-500/20">
+                <Sparkles className="w-5 h-5 text-yellow-500" />
+              </div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">
+                {t('pulse_analysis')}
+              </span>
+            </div>
+            {!isPremium && <Badge className="bg-primary/20 text-primary text-[9px] uppercase px-2 py-0.5 rounded-full border-primary/30">{t('pro_only')}</Badge>}
+          </div>
+          
+          <div className="relative">
+            <div className={!isPremium ? "blur-xl select-none pointer-events-none opacity-20" : ""}>
+              <p className="text-sm leading-relaxed opacity-80">
                 {data.advancedInsights || "No advanced insights available for this interaction."}
               </p>
             </div>
             
             {!isPremium && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-black/20 backdrop-blur-[2px]">
-                <Lock className="w-8 h-8 text-primary mb-3" />
-                <p className="text-sm font-medium mb-4">Upgrade to Pro to unlock deep-level psychological analysis.</p>
-                <button 
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 border border-primary/20">
+                  <Lock className="w-6 h-6 text-primary" />
+                </div>
+                <p className="text-sm font-bold mb-4 max-w-xs">{t('upgrade_message')}</p>
+                <Button 
                   onClick={onUpgradeClick}
-                  className="px-6 py-2 bg-primary text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
+                  className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 glow-primary"
                 >
-                  Unlock Pro Insights
-                </button>
+                  {t('unlock_pro_insights')}
+                </Button>
               </div>
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </motion.div>
     </div>
   );

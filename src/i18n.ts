@@ -30,7 +30,21 @@ const resources = {
       "copy_success": "Copied!",
       "mbti": "MBTI",
       "big_five": "BIG 5",
-      "enneagram": "ENNEAGRAM"
+      "enneagram": "ENNEAGRAM",
+      "daily_scans_left": "{{count}} daily scans left",
+      "new_analysis": "New Analysis",
+      "history": "History",
+      "upgrade_pro": "Upgrade to Pro",
+      "analysis_report": "Analysis Report",
+      "case_id": "Case ID",
+      "pro_analysis": "Pro Analysis",
+      "unlock_pro_insights": "Unlock Pro Insights",
+      "pro_only": "Pro Only",
+      "upgrade_message": "Upgrade to Pro to unlock deep-level psychological analysis.",
+      "hero_title_1": "Master the",
+      "hero_title_span": "Subtext",
+      "hero_title_2": "of Human Interaction",
+      "hero_description": "Upload any conversation to decode hidden intentions, personality traits, and strategic responses."
     }
   },
   ar: {
@@ -60,7 +74,21 @@ const resources = {
       "copy_success": "تم النسخ!",
       "mbti": "نمط الشخصية",
       "big_five": "الخمسة الكبار",
-      "enneagram": "إنياغرام"
+      "enneagram": "إنياغرام",
+      "daily_scans_left": "متبقي {{count}} عمليات مسح يومية",
+      "new_analysis": "تحليل جديد",
+      "history": "السجل",
+      "upgrade_pro": "الترقية إلى برو",
+      "analysis_report": "تقرير التحليل",
+      "case_id": "رقم الحالة",
+      "pro_analysis": "تحليل احترافي",
+      "unlock_pro_insights": "فتح التحليلات الاحترافية",
+      "pro_only": "للمشتركين فقط",
+      "upgrade_message": "قم بالترقية إلى برو لفتح التحليل النفسي العميق.",
+      "hero_title_1": "أتقن",
+      "hero_title_span": "النصوص الخفية",
+      "hero_title_2": "للتفاعل البشري",
+      "hero_description": "ارفع أي محادثة لفك شفرة النوايا الخفية، سمات الشخصية، والاستجابات الاستراتيجية."
     }
   }
 };

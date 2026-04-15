@@ -30,6 +30,7 @@ import { PulseAnalysis } from "@/src/components/PulseAnalysis";
 import { StrategyCards } from "@/src/components/StrategyCards";
 import { UpgradeModal } from "@/src/components/UpgradeModal";
 import { AdsterraAd } from "@/src/components/AdsterraAd";
+import { Analytics } from "@vercel/analytics/react";
 
 const FREE_LIMIT = 10;
 
@@ -332,6 +333,7 @@ export default function App() {
         onClose={() => setShowUpgradeModal(false)} 
         onSuccess={handleUpgradeSuccess} 
       />
+      <Analytics />
     </TooltipProvider>
   );
 }

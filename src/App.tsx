@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import type React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   Brain, 
@@ -31,6 +32,7 @@ import { StrategyCards } from "@/src/components/StrategyCards";
 import { UpgradeModal } from "@/src/components/UpgradeModal";
 import { AdsterraAd } from "@/src/components/AdsterraAd";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 
 const FREE_LIMIT = 10;
 
@@ -334,6 +336,7 @@ export default function App() {
         onSuccess={handleUpgradeSuccess} 
       />
       <SpeedInsights />
+      <Analytics />
     </TooltipProvider>
   );
 }

@@ -43,6 +43,16 @@ npm run dev
 
 The application will be available at `http://localhost:3000` (or the port specified in your console).
 
+## GitHub Deployment
+
+To host this project on GitHub Pages:
+
+1. Create a GitHub repository and push your code.
+2. In the repository settings, go to **Settings > Secrets and variables > Actions**.
+3. Create a **New repository secret** called `GEMINI_API_KEY` and paste your API key.
+4. Go to **Settings > Pages** and ensure "Build and deployment" is set to use **GitHub Actions**.
+5. Each push to the `main` branch will automatically build and deploy to the `gh-pages` branch.
+
 ## Tech Stack
 
 - **Frontend:** React 19, Vite, Tailwind CSS 4.

@@ -38,6 +38,16 @@
    ```
 2. سيكون التطبيق متاحًا على الرابط: `http://localhost:3000` (أو المنفذ المحدد في وحدة التحكم الخاصة بك).
 
+## النشر على GitHub (GitHub Deployment)
+
+لاستضافة هذا المشروع على GitHub Pages مجاناً:
+
+1. قم بإنشاء مستودع (Repository) جديد على GitHub وارفَع الكود إليه.
+2. من إعدادات المستودع، اذهب إلى **Settings > Secrets and variables > Actions**.
+3. أضف "New repository secret" باسم `GEMINI_API_KEY` وضَع مفتاحك هنا.
+4. اذهب إلى **Settings > Pages** وتأكد من ضبط "Build and deployment" لاستخدام **GitHub Actions**.
+5. سيتم بناء الموقع ونشره تلقائياً عند كل عملية رفع (Push) لفرع `main`.
+
 ## التقنيات المستخدمة
 
 - **الواجهة الأمامية:** React 19, Vite, Tailwind CSS 4.
